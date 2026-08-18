@@ -1,0 +1,20 @@
+class Solution:
+    def subarraySum(self, nums, k):
+        count = 0
+        prefix_sum = 0
+        
+        # Stores prefix_sum -> frequency
+        hashmap = {0: 1}
+        
+        for num in nums:
+            prefix_sum += num
+            
+            # Check if there is a previous prefix sum
+            # such that current_sum - previous_sum = k
+            if prefix_sum - k in hashmap:
+                count += hashmap[prefix_sum - k]
+            
+            # Store/update current prefix sum
+            hashmap[prefix_sum] = hashmap.get(prefix_sum, 0) + 1
+        
+        return count

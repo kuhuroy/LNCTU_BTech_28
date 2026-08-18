@@ -1,0 +1,13 @@
+class Solution(object):
+    def largestAltitude(self, gain):
+       altitude =0
+       highest =0
+
+       for i in gain:
+        altitude = altitude +i
+
+        if altitude> highest:
+            highest = altitude
+
+       return highest     
+       
