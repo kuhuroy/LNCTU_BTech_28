@@ -1,0 +1,49 @@
+01.1732_Find_Highest_Altitude.py
+
+class Solution:
+    def largestAltitude(self, gain):
+        altitude = 0
+        highest = 0
+
+        for g in gain:
+            altitude += g
+            highest = max(highest, altitude)
+
+        return highest
+
+02.209_Minimum_Size_Subarray_Sum.py
+
+class Solution:
+    def minSubArrayLen(self, target, nums):
+        left = 0
+        current_sum = 0
+        min_length = float('inf')
+
+        for right in range(len(nums)):
+            current_sum += nums[right]
+
+            while current_sum >= target:
+                min_length = min(min_length, right - left + 1)
+                current_sum -= nums[left]
+                left += 1
+
+        return 0 if min_length == float('inf') else min_length
+
+03.560_Subarray_Sum_Equals_K.py
+
+class Solution:
+    def subarraySum(self, nums, k):
+        prefix_sum = 0
+        count = 0
+
+        prefix_count = {0: 1}
+
+        for num in nums:
+            prefix_sum += num
+
+            if prefix_sum - k in prefix_count:
+                count += prefix_count[prefix_sum - k]
+
+            prefix_count[prefix_sum] = prefix_count.get(prefix_sum, 0) + 1
+
+        return count
