@@ -1,0 +1,23 @@
+class Solution(object):
+    def maximumSum(self, arr):
+        no_delete = arr[0]
+        one_delete = arr[0]
+        ans = arr[0]
+
+        for i in range(1, len(arr)):
+            x = arr[i]
+
+            # Maximum sum without deleting anything
+            new_no_delete = max(x, no_delete + x)
+
+            # Either:
+            # 1. Continue after one deletion
+            # 2. Delete the current element
+            new_one_delete = max(one_delete + x, no_delete)
+
+            no_delete = new_no_delete
+            one_delete = new_one_delete
+
+            ans = max(ans, no_delete, one_delete)
+
+        return ans
