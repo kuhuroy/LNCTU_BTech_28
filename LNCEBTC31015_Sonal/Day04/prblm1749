@@ -1,0 +1,13 @@
+class Solution(object):
+    def maxAbsoluteSum(self, nums):
+        max_sum = 0
+        min_sum = 0
+        ans = 0
+
+        for x in nums:
+            max_sum = max(max_sum, 0) + x
+            min_sum = min(min_sum, 0) + x
+
+            ans = max(ans, max_sum, abs(min_sum))
+
+        return ans
